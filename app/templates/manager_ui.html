@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>Welcome to Manager UI</h1>
+    <form action="{{url_for('grow_by_one')}}" method="post" style="display:inline-block;">
+        <input type="submit" value="Grow by one">
+    </form>&nbsp;
+    <form action="{{url_for('shrink_by_one')}}" method="post" style="display:inline-block;">
+        <input type="submit" value="Shrink by one">
+    </form><br><br>
+    <table>
+        <thead>
+        <th>ID</th>
+        <th>Type</th>
+        <th>Availability Zone</th>
+        <th>Status</th>
+        <th>CPU utilization</th>
+        </thead>
+        {% for instance,ins_cpu in instances_cpu %}
+            <tr>
+                <td>{{ instance.id }}</td>
+                <td>{{ instance.instance_type }}</td>
+                <td>{{ instance.placement['AvailabilityZone'] }}</td>
+                <td>{{ instance.state['Name'] }}</td>
+                <td>{{ ins_cpu }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <form action="{{url_for('delete_all')}}" method="post">
+        <input type="submit" value="Delete all data">
+    </form>
+</body>
+</html>

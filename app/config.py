@@ -1,0 +1,22 @@
+ami_id = 'ami-6cd26716'
+instance_type = 't2.small'
+key_name = 'A1_Web_Development'
+security_group = ['sg-afbb7edd']
+elbname = 'ece1779lb'
+iam_instance_profile = {'Arn':'arn:aws:iam::770147457029:instance-profile/a2worker',
+                        'Name':'a2worker'}
+monitoring = {'Enabled':True}
+placement = {'AvailabilityZone':'us-east-1'}
+subnet = 'subnet-311b0e1d'
+tag_specification = [{'Tags':[{'Key':'Name',
+                               'Value':'worker'}
+                              ]}]
+userdata = """
+#cloud-config
+runcmd:
+ - cd /home/ubuntu/Desktop/ece1779/a2/A1_web_development
+ - chmod +x ./run.sh
+ - sudo ./run.sh
+
+output : { all : '| tee -a /var/log/cloud-init-output.log' }
+"""
