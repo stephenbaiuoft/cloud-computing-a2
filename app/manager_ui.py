@@ -59,7 +59,6 @@ def grow_by_one():
                          InstanceType = config.instance_type,
                          KeyName = config.key_name,
                          Monitoring = config.monitoring,
-                         Placement = config.placement,
                          SecurityGroupIds = config.security_group,
                          SubnetId = config.subnet,
                          UserData = config.userdata,

@@ -6,12 +6,15 @@ elbname = 'ece1779lb'
 iam_instance_profile = {'Arn':'arn:aws:iam::770147457029:instance-profile/a2worker',
                         'Name':'a2worker'}
 monitoring = {'Enabled':True}
-placement = {'AvailabilityZone':'us-east-1'}
 subnet = 'subnet-311b0e1d'
-tag_specification = [{'ResourceType':'instance',
-                      'Tags':[{'Key':'Name',
-                               'Value':'worker'}
-                              ]}]
+tag_specification = [{
+                        'ResourceType':'instance',
+                        'Tags':[
+                            {
+                                'Key':'Name',
+                                'Value':'worker'
+                            }
+                        ]}]
 userdata = """
 #cloud-config
 runcmd:
