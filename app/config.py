@@ -8,7 +8,8 @@ iam_instance_profile = {'Arn':'arn:aws:iam::770147457029:instance-profile/a2work
 monitoring = {'Enabled':True}
 placement = {'AvailabilityZone':'us-east-1'}
 subnet = 'subnet-311b0e1d'
-tag_specification = [{'Tags':[{'Key':'Name',
+tag_specification = [{'ResourceType':'instance',
+                      'Tags':[{'Key':'Name',
                                'Value':'worker'}
                               ]}]
 userdata = """
@@ -20,3 +21,8 @@ runcmd:
 
 output : { all : '| tee -a /var/log/cloud-init-output.log' }
 """
+
+db_config = {'user': 'ece1779',
+             'password': 'secret',
+             'host': '172.31.82.184',
+             'database': 'photo_browser'}

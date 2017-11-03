@@ -20,8 +20,8 @@ $ venv/bin/pip3 install awscli
 $ aws configure
 
 6.install gunicorn
-$ venv/bin/pip install gunicorn
-$ venv/bin/install gevent
+$ venv/bin/pip3 install gunicorn
+$ venv/bin/pip3 install gevent
 $ chmod +x ./run.sh
 
 7.
