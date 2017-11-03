@@ -3,8 +3,8 @@ instance_type = 't2.small'
 key_name = 'A1_Web_Development'
 security_group = ['sg-afbb7edd']
 elbname = 'ece1779lb'
-iam_instance_profile = {'Arn':'arn:aws:iam::770147457029:instance-profile/a2worker',
-                        'Name':'a2worker'}
+iam_instance_profile = {'Arn':'arn:aws:iam::770147457029:instance-profile/a2worker'}
+# 'Name':'a2worker'
 monitoring = {'Enabled':True}
 subnet = 'subnet-311b0e1d'
 tag_specification = [{
