@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>CPU Utilization Plot</h1>
-    <div id="cpu" style="width:300px;height:150px"></div>
+    <div id="cpu_plot" style="width:300px;height:150px;"></div>
     <form action="{{url_for('main')}}" method='get'>
         <input type='submit' value='Back'/>
     </form>
@@ -19,7 +19,7 @@
             }
         };
 
-        $.plot($("#cpu"), [ {{ cpu_stats }} ] , options);
+        $.plot($("#cpu_plot"), [ {{ cpu_stats }} ] , options);
     </script>
 </body>
 </html>

@@ -134,7 +134,7 @@ def cpu_load(id):
         Dimensions=[{'Name':'InstanceId', 'Value':id}],
         StartTime=past,
         EndTime=future,
-        Period=60,
+        Period=1 * 60,
         Statistics=['Average']
     )
     cpu_stats = []
