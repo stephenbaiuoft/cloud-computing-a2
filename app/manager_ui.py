@@ -149,13 +149,18 @@ def delete_all():
     cursor.execute(query)
     img_data = cursor.fetchone()
     bucket_data = bucket.objects.all()
-    print(user_data)
-    print(img_data)
-    print(bucket_data)
-    if user_data or img_data or bucket_data:
+    # print(user_data)
+    # print(img_data)
+    # print(bucket_data)
+    if user_data or img_data:
         msg = 'Failed to delete all.'
     else:
-        msg = 'Data have been deleted.'
+        try:
+            for obj in bucket_data:
+                k = obj.key
+                msg = 'Failed to delete all.'
+        except:
+            msg = 'Data have been deleted.'
     global MAIN_MSG
     MAIN_MSG = msg
     return redirect(url_for('main'))
