@@ -19,8 +19,9 @@ def main():
     # create connection to ec2 worker pool
     ec2 = boto3.resource('ec2')
     # list a list of instances named 'worker'
-    workers = ec2.instances.filter(Filters=[{'Name':'tag:Name', 'Values':['worker']}])
-    # {'Name':'instance-state-name', 'Values':['running']}
+    workers = ec2.instances.filter(Filters=[{'Name':'tag:Name', 'Values':['worker']},
+                                            {'Name': 'instance-state-name', 'Values': ['running','pending','shutting-down','stopping','stopped']}])
+    #
     cpu = []
     for instance in workers:
         cpu.append(cpu_load(instance.id)[0])
@@ -89,19 +90,20 @@ def shrink_by_one():
         # last = workers[-1].id
         # ec2.instances.filter(InstanceIds=last).terminate()
         for worker in workers:
-            deleted_id = worker.id
-            worker.terminate()
-            break
-        # detach from load balancer
-        elb = boto3.client('elb')
-        response = elb.deregister_instances_from_load_balancer(
-            LoadBalancerName=config.elbname,
-            Instances=[
-                {
-                    'InstanceId': deleted_id
-                },
-            ]
-        )
+            if worker.state['Name'] != 'terminated':
+                deleted_id = worker.id
+                worker.terminate()
+                # detach from load balancer
+                elb = boto3.client('elb')
+                response = elb.deregister_instances_from_load_balancer(
+                    LoadBalancerName=config.elbname,
+                    Instances=[
+                        {
+                            'InstanceId': deleted_id
+                        },
+                    ]
+                )
+                break
     return redirect(url_for('main'))
 
 
