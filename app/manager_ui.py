@@ -149,6 +149,9 @@ def delete_all():
     cursor.execute(query)
     img_data = cursor.fetchone()
     bucket_data = bucket.objects.all()
+    print(user_data)
+    print(img_data)
+    print(bucket_data)
     if user_data or img_data or bucket_data:
         msg = 'Failed to delete all.'
     else:
