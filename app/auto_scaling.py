@@ -1,7 +1,5 @@
 import atexit
 
-from app import webapp
-from app import manager_ui
 
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.interval import IntervalTrigger
@@ -16,3 +14,4 @@ scheduler.add_job(
     replace_existing=True)
 # Shut down the scheduler when exiting the app
 atexit.register(lambda: scheduler.shutdown())
+
