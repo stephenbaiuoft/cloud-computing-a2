@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cceaca42-699c-402b-a40d-713008939d4b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/cpu_utilization.html" afterPath="$PROJECT_DIR$/app/templates/cpu_utilization.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/instructions" afterPath="$PROJECT_DIR$/instructions" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/manager_ui.py" afterPath="$PROJECT_DIR$/app/manager_ui.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,11 +24,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="manager_ui.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="manager_ui.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/manager_ui.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="774">
-              <caret line="162" column="47" lean-forward="true" selection-start-line="162" selection-start-column="47" selection-end-line="162" selection-end-column="47" />
+            <state relative-caret-position="346">
+              <caret line="90" column="31" lean-forward="false" selection-start-line="90" selection-start-column="31" selection-end-line="90" selection-end-column="31" />
               <folding>
                 <element signature="e#0#64#0" expanded="true" />
               </folding>
@@ -50,7 +48,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="manager_ui.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="manager_ui.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/manager_ui.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="342">
@@ -97,8 +95,8 @@
       <list>
         <option value="$PROJECT_DIR$/app/config.py" />
         <option value="$PROJECT_DIR$/app/templates/manager_ui.html" />
-        <option value="$PROJECT_DIR$/app/manager_ui.py" />
         <option value="$PROJECT_DIR$/app/templates/cpu_utilization.html" />
+        <option value="$PROJECT_DIR$/app/manager_ui.py" />
       </list>
     </option>
   </component>
@@ -369,16 +367,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/manager_ui.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="774">
-          <caret line="162" column="47" lean-forward="true" selection-start-line="162" selection-start-column="47" selection-end-line="162" selection-end-column="47" />
-          <folding>
-            <element signature="e#0#64#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/run.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
@@ -402,6 +390,16 @@
         <state relative-caret-position="342">
           <caret line="19" column="23" lean-forward="true" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/manager_ui.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="90" column="31" lean-forward="false" selection-start-line="90" selection-start-column="31" selection-end-line="90" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#64#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

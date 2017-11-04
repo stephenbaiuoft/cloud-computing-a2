@@ -83,12 +83,12 @@ def grow_by_one():
 # Shrink the worker pool by one
 def shrink_by_one():
     ec2 = boto3.resource('ec2')
-    workers = ec2.instances.filter(Filters=[{'Name':'instance-state-name', 'Values':['running']},
-                                            {'Name':'tag:Name', 'Values':['worker']}])
+    workers = ec2.instances.filter(Filters=[{'Name':'tag:Name', 'Values':['worker']}])
     # check if there is any workers
-    if len(workers) >= 1:
-        last = workers[-1].id
-        ec2.instances.filter(InstanceIds=last).terminate()
+    if workers:
+        # last = workers[-1].id
+        # ec2.instances.filter(InstanceIds=last).terminate()
+        workers[-1].terminate()
     return redirect(url_for('main'))
 
 
