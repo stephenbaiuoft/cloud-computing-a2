@@ -9,13 +9,14 @@ from operator import itemgetter
 import mysql.connector
 from app.config import db_config
 
+MAIN_MSG = None
 
 @webapp.route('/',methods=['GET'])
 @webapp.route('/index',methods=['GET'])
 @webapp.route('/main',methods=['GET'])
 @webapp.route('/worker_list', methods=['GET'])
 # Display an HTML list of all workers' instances
-def main(msg):
+def main():
     # create connection to ec2 worker pool
     ec2 = boto3.resource('ec2')
     # list a list of instances named 'worker'
@@ -26,7 +27,7 @@ def main(msg):
     for instance in workers:
         cpu.append(cpu_load(instance.id)[0])
 
-    return render_template("manager_ui.html", title="Manager UI", instances_cpu = zip(workers, cpu), msg=msg)
+    return render_template("manager_ui.html", title="Manager UI", instances_cpu = zip(workers, cpu), msg=MAIN_MSG)
 
 
 def connect_to_database():
@@ -77,6 +78,8 @@ def grow_by_one():
         ]
     )
     print(response)
+    global MAIN_MSG
+    MAIN_MSG = 'Launched a new worker.'
     return redirect(url_for('main'))
 
 
@@ -87,6 +90,7 @@ def shrink_by_one():
     workers = ec2.instances.filter(Filters=[{'Name':'tag:Name', 'Values':['worker']}])
     # check if there is any workers
     if workers:
+        global MAIN_MSG
         # last = workers[-1].id
         # ec2.instances.filter(InstanceIds=last).terminate()
         for worker in workers:
@@ -103,7 +107,11 @@ def shrink_by_one():
                         },
                     ]
                 )
+                MAIN_MSG = 'Terminated a worker.'
                 break
+        else:
+            MAIN_MSG = None
+
     return redirect(url_for('main'))
 
 
@@ -142,7 +150,9 @@ def delete_all():
         msg = 'Failed to delete all.'
     else:
         msg = 'Data have been deleted.'
-    return redirect(url_for('main', msg=msg))
+    global MAIN_MSG
+    MAIN_MSG = msg
+    return redirect(url_for('main'))
 
 
 def cpu_load(id):
@@ -184,5 +194,7 @@ def cpu_load(id):
 @webapp.route('/worker_list/<id>', methods=['GET'])
 def cpu_plot(id):
     cpu_stats = cpu_load(id)[1]
+    global MAIN_MSG
+    MAIN_MSG = None
     return render_template("cpu_utilization.html", title="CPU Utilization Plot",
                            cpu_stats=cpu_stats)
