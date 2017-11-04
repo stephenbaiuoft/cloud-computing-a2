@@ -113,15 +113,16 @@ def delete_all():
     # delete everything on s3
     s3 = boto3.resource('s3')
     bucket = s3.Bucket('cloud-computing-photo-storage')
-    response = bucket.delete_objects(
-        Delete={
-            'Objects': [
-                {
-                    'Key': '*',
-                },
-            ],
-        },
-    )
+    bucket.objects.all().delete()
+    # response = bucket.delete_objects(
+    #     Delete={
+    #         'Objects': [
+    #             {
+    #                 'Key': '*',
+    #             },
+    #         ],
+    #     },
+    # )
     # delete everthing in database
     cnx = get_db()
     cursor = cnx.cursor()
@@ -131,8 +132,8 @@ def delete_all():
     '''
     cursor.execute(query, multi=True)
     cnx.commit()
-
-    return redirect(url_for('main'))
+    msg = 'Data have been deleted.'
+    return redirect(url_for('main', msg=msg))
 
 
 def cpu_load(id):
