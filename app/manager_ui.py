@@ -152,6 +152,7 @@ def delete_all():
     # print(user_data)
     # print(img_data)
     # print(bucket_data)
+    msg = ''
     if user_data or img_data:
         msg = 'Failed to delete all.'
     else:
