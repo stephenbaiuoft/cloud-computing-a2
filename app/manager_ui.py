@@ -129,7 +129,7 @@ def delete_all():
     DELETE FROM images WHERE img_id >= 1;
     DELETE FROM users WHERE user_id >= 1;
     '''
-    cursor.execute(query)
+    cursor.execute(query, multi=True)
     cnx.commit()
 
     return redirect(url_for('main'))
