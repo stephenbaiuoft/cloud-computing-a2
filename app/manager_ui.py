@@ -133,20 +133,23 @@ def delete_all():
     # )
     # delete everthing in database
     cnx = get_db()
-    cursor = cnx.cursor()
-    query = '''
-    DELETE FROM images WHERE img_id >= 1;
-    DELETE FROM users WHERE user_id >= 1;
-    '''
-    cursor.execute(query, multi=True)
+    cursor = cnx.cursor(buffered=True)
+    query = '''DELETE FROM images WHERE img_id >= 1'''
+    cursor.execute(query)
+    cnx.commit()
+    query = '''DELETE FROM users WHERE user_id >= 1'''
+    cursor.execute(query)
     cnx.commit()
 
     # check if succeed
     query = '''SELECT * FROM users'''
     cursor.execute(query)
     user_data = cursor.fetchone()
+    query = '''SELECT * FROM images'''
+    cursor.execute(query)
+    img_data = cursor.fetchone()
     bucket_data = bucket.objects.all()
-    if user_data or bucket_data:
+    if user_data or img_data or bucket_data:
         msg = 'Failed to delete all.'
     else:
         msg = 'Data have been deleted.'
