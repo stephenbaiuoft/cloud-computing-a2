@@ -152,15 +152,15 @@ def delete_all():
     # print(user_data)
     # print(img_data)
     # print(bucket_data)
-    msg = ''
     if user_data or img_data:
         msg = 'Failed to delete all.'
     else:
-        try:
-            for obj in bucket_data:
-                k = obj.key
+        for obj in bucket_data:
+            k = obj.key
+            if k != '':
                 msg = 'Failed to delete all.'
-        except:
+                break
+        else:
             msg = 'Data have been deleted.'
     global MAIN_MSG
     MAIN_MSG = msg
