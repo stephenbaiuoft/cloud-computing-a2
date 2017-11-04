@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cceaca42-699c-402b-a40d-713008939d4b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/cpu_utilization.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/manager_ui.py" afterPath="$PROJECT_DIR$/app/manager_ui.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/manager_ui.html" afterPath="$PROJECT_DIR$/app/templates/manager_ui.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,11 +24,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="manager_ui.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="manager_ui.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/manager_ui.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2124">
-              <caret line="118" column="0" lean-forward="true" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+            <state relative-caret-position="730">
+              <caret line="158" column="50" lean-forward="true" selection-start-line="158" selection-start-column="50" selection-end-line="158" selection-end-column="50" />
               <folding>
                 <element signature="e#0#64#0" expanded="true" />
               </folding>
@@ -51,7 +48,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="manager_ui.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="manager_ui.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/manager_ui.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="486">
@@ -388,21 +385,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/manager_ui.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2124">
-          <caret line="118" column="0" lean-forward="true" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#64#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/manager_ui.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="486">
           <caret line="27" column="53" lean-forward="false" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/manager_ui.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="730">
+          <caret line="158" column="50" lean-forward="true" selection-start-line="158" selection-start-column="50" selection-end-line="158" selection-end-column="50" />
+          <folding>
+            <element signature="e#0#64#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
