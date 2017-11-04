@@ -10,11 +10,14 @@ sudo dpkg-reconfigure locales
 3.activate the venv
 $ source venv/bin/activate
 
-4.install flask, mysql-connector-python, boto3, awscli
+4.install flask, mysql-connector-python, boto3, awscli, flot
 $ venv/bin/pip3 install flask
 $ venv/bin/pip3 install mysql-connector-python-rf --egg
 $ venv/bin/pip3 install boto3
 $ venv/bin/pip3 install awscli
+$ cd app
+$ mkdir static
+$ static/git clone https://github.com/flot/flot.git
 
 5.configure aws
 $ aws configure
