@@ -88,7 +88,9 @@ def shrink_by_one():
     if workers:
         # last = workers[-1].id
         # ec2.instances.filter(InstanceIds=last).terminate()
-        workers[-1].terminate()
+        for worker in workers:
+            worker.terminate()
+            break
     return redirect(url_for('main'))
 
 
