@@ -89,8 +89,19 @@ def shrink_by_one():
         # last = workers[-1].id
         # ec2.instances.filter(InstanceIds=last).terminate()
         for worker in workers:
+            deleted_id = worker.id
             worker.terminate()
             break
+        # detach from load balancer
+        elb = boto3.client('elb')
+        response = elb.deregister_instances_from_load_balancer(
+            LoadBalancerName=config.elbname,
+            Instances=[
+                {
+                    'InstanceId': deleted_id
+                },
+            ]
+        )
     return redirect(url_for('main'))
 
 
