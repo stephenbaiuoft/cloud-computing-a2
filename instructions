@@ -22,6 +22,10 @@ $ static/git clone https://github.com/flot/flot.git
 5.configure aws
 $ aws configure
 
+install APScheduler
+$ export LC_ALL=C
+$ venv/bin/pip3 install apscheduler
+
 6.install gunicorn
 $ venv/bin/pip3 install gunicorn
 $ venv/bin/pip3 install gevent
