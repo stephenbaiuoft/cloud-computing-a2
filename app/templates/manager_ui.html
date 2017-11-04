@@ -26,12 +26,13 @@
                 <td>{{ instance.instance_type }}</td>
                 <td>{{ instance.placement['AvailabilityZone'] }}</td>
                 <td>{{ instance.state['Name'] }}</td>
-                <td>{{ ins_cpu }}</td>
+                <td><a href="{{url_for('cpu_plot', id=instance.id)}}">{{ ins_cpu }}</a></td>
             </tr>
         {% endfor %}
     </table>
 
-    <form action="{{url_for('delete_all')}}" method="post">
+    <form action="{{url_for('delete_all')}}" method="post"
+          onsubmit="return confirm('Delete user data and images?');">
         <input type="submit" value="Delete all data">
     </form>
 </body>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>CPU Utilization Plot</h1>
+    <div id="cpu" style="width:300px;height:150px"></div>
+    <form action="{{url_for('main')}}" method='get'>
+        <input type='submit' value='Back'/>
+    </form>
+    <script>
+
+        var options = {
+            series: {
+                lines: { show: true },
+                points: { show: true }
+            }
+        };
+
+        $.plot($("#cpu"), [ {{ cpu_stats }} ] , options);
+    </script>
+</body>
+</html>
