@@ -156,7 +156,7 @@ def cpu_load(id):
 
     return [load, cpu_stats]
 
-@webapp.route('worker_list/<id>', methods=['GET'])
+@webapp.route('/worker_list/<id>', methods=['GET'])
 def cpu_plot(id):
     cpu_stats = cpu_load(id)[1]
     return render_template("cpu_utilization.html", title="CPU Utilization Plot",
