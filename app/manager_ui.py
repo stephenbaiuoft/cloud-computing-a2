@@ -15,7 +15,7 @@ from app.config import db_config
 @webapp.route('/main',methods=['GET'])
 @webapp.route('/worker_list', methods=['GET'])
 # Display an HTML list of all workers' instances
-def main():
+def main(msg):
     # create connection to ec2 worker pool
     ec2 = boto3.resource('ec2')
     # list a list of instances named 'worker'
@@ -26,7 +26,7 @@ def main():
     for instance in workers:
         cpu.append(cpu_load(instance.id)[0])
 
-    return render_template("manager_ui.html", title="Manager UI", instances_cpu = zip(workers, cpu))
+    return render_template("manager_ui.html", title="Manager UI", instances_cpu = zip(workers, cpu), msg=msg)
 
 
 def connect_to_database():
@@ -132,7 +132,16 @@ def delete_all():
     '''
     cursor.execute(query, multi=True)
     cnx.commit()
-    msg = 'Data have been deleted.'
+
+    # check if succeed
+    query = '''SELECT * FROM users'''
+    cursor.execute(query)
+    user_data = cursor.fetchone()
+    bucket_data = bucket.objects.all()
+    if user_data or bucket_data:
+        msg = 'Failed to delete all.'
+    else:
+        msg = 'Data have been deleted.'
     return redirect(url_for('main', msg=msg))
 
 
