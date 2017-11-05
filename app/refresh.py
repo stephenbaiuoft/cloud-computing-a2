@@ -74,16 +74,16 @@ def auto_refresh():
             MAIN_MSG = 'Automatically shrank the worker pool by ratio ' + str(ratio_shrink)
     return redirect(url_for('main'))
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
 
-    scheduler = BackgroundScheduler()
-    scheduler.start()
-    scheduler.add_job(
-        func=auto_refresh(),
-        trigger=IntervalTrigger(seconds=60),
-        id='worker_list',
-        name='Refresh the worker pool every 60 seconds',
-        replace_existing=True)
-    # Shut down the scheduler when exiting the app
-    atexit.register(lambda: scheduler.shutdown())
+scheduler = BackgroundScheduler()
+scheduler.start()
+scheduler.add_job(
+    func=auto_refresh(),
+    trigger=IntervalTrigger(seconds=60),
+    id='worker_list',
+    name='Refresh the worker pool every 60 seconds',
+    replace_existing=True)
+# Shut down the scheduler when exiting the app
+atexit.register(lambda: scheduler.shutdown())
 
