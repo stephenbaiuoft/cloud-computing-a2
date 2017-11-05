@@ -29,3 +29,8 @@ db_config = {'user': 'ece1779',
              'password': 'secret',
              'host': '172.31.82.184',
              'database': 'photo_browser'}
+
+# cpu_threshold_high = 0.6
+# cpu_threshold_low = 0.3
+# ratio_grow = 2
+# ratio_shrink = 4
