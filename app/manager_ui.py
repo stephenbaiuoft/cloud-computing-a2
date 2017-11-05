@@ -217,24 +217,26 @@ def tune():
     new_ratio_grow = request.form.get('ratio_grow', "")
     new_ratio_shrink = request.form.get('ratio_shrink', "")
     if new_thre_l != "" and new_thre_h != "":
-        new_thre_l /= 100.
-        new_thre_h /= 100.
-        if 0. <= new_thre_l < new_thre_h <= 1:
+        new_thre_l = float(new_thre_l) / 100.
+        new_thre_h = float(new_thre_h) / 100.
+        if 0. <= new_thre_l < new_thre_h <= 1.:
             CPU_THRE_L = new_thre_l
             CPU_THRE_H = new_thre_h
     elif new_thre_l == "" and new_thre_h != "":
-        new_thre_h /= 100.
+        new_thre_h = float(new_thre_h) / 100.
         if 1 >= new_thre_h > CPU_THRE_L:
             CPU_THRE_H = new_thre_h
     elif new_thre_h == "" and new_thre_l != "":
-        new_thre_l /= 100.
+        new_thre_l = float(new_thre_l) / 100.
         if 0 <= new_thre_l < CPU_THRE_H:
             CPU_THRE_L = new_thre_l
 
     if new_ratio_grow != "":
+        new_ratio_grow = float(new_ratio_grow)
         if new_ratio_grow >= 1.:
             RATIO_GROW = new_ratio_grow
     if new_ratio_shrink != "":
+        new_ratio_shrink = float(new_ratio_shrink)
         if new_ratio_shrink >= 1.:
             RATIO_SHRINK = new_ratio_shrink
     MAIN_MSG = 'CPU_THRESHOLD_HIGH: '+str(CPU_THRE_H)+', CPU_THRESHOLD_LOW: '+str(CPU_THRE_L)+', RATIO_GROW: '\
