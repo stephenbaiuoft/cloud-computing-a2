@@ -12,7 +12,7 @@ from apscheduler.triggers.interval import IntervalTrigger
 
 @webapp.route('/auto_refresh')
 def auto_refresh():
-    global MAIN_MSG
+    # global MAIN_MSG
     cpu_threshold_high = CPU_THRE_H
     cpu_threshold_low = CPU_THRE_L
     ratio_grow = RATIO_GROW
@@ -54,7 +54,7 @@ def auto_refresh():
                 LoadBalancerName=config.elbname,
                 Instances=new_ids
             )
-            MAIN_MSG = 'Automatically expanded the worker pool by ratio '+str(ratio_grow)
+            # MAIN_MSG = 'Automatically expanded the worker pool by ratio '+str(ratio_grow)
     elif average_current < cpu_threshold_low:
         num_to_shrink = math.floor(count - count * 1. / ratio_shrink)
         if num_to_shrink > 0 and count > 1:
@@ -71,8 +71,9 @@ def auto_refresh():
                 LoadBalancerName=config.elbname,
                 Instances=delete_ids
             )
-            MAIN_MSG = 'Automatically shrank the worker pool by ratio ' + str(ratio_shrink)
+            # MAIN_MSG = 'Automatically shrank the worker pool by ratio ' + str(ratio_shrink)
     #return redirect(url_for('main'))
+    print(response)
     return response
 
 # if __name__ == '__main__':
