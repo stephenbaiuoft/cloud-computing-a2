@@ -1,1 +1,5 @@
-wget http://localhost:5000/auto_refresh
+#!/bin/sh
+source venv/bin/activate
+python3 refresh.py
+
+
