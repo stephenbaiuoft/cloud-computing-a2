@@ -1,4 +1,4 @@
-from app.manager_ui import main, cpu_load, CPU_THRE_H, CPU_THRE_L, RATIO_GROW, RATIO_SHRINK
+from app.manager_ui import cpu_load, CPU_THRE_H, CPU_THRE_L, RATIO_GROW, RATIO_SHRINK
 from flask import render_template, redirect, url_for, request, g
 from app import config
 from app import webapp
@@ -17,7 +17,7 @@ def auto_refresh():
     cpu_threshold_low = CPU_THRE_L
     ratio_grow = RATIO_GROW
     ratio_shrink = RATIO_SHRINK
-
+    response=None
     # create connection to ec2 worker pool
     ec2 = boto3.resource('ec2')
     # list a list of instances named 'worker'
@@ -72,7 +72,8 @@ def auto_refresh():
                 Instances=delete_ids
             )
             MAIN_MSG = 'Automatically shrank the worker pool by ratio ' + str(ratio_shrink)
-    return redirect(url_for('main'))
+    #return redirect(url_for('main'))
+    return response
 
 # if __name__ == '__main__':
 
