@@ -11,8 +11,8 @@ import mysql.connector
 from app.config import db_config
 
 MAIN_MSG = None
-CPU_THRE_H = 0.7
-CPU_THRE_L = 0.25
+CPU_THRE_H = 0.6
+CPU_THRE_L = 0.1
 RATIO_GROW = 2
 RATIO_SHRINK = 2
 

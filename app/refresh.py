@@ -82,9 +82,9 @@ scheduler = BackgroundScheduler()
 scheduler.start()
 scheduler.add_job(
     func=auto_refresh,
-    trigger=IntervalTrigger(seconds=70),
+    trigger=IntervalTrigger(seconds=60),
     id='worker_list',
-    name='Refresh the worker pool every 70 seconds',
+    name='Refresh the worker pool every 60 seconds',
     misfire_grace_time=10,
     coalesce=True,
     max_instances=1,
