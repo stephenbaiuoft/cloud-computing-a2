@@ -5,6 +5,10 @@ from app import webapp
 import boto3
 import math
 
+import atexit
+from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.triggers.interval import IntervalTrigger
+
 
 @webapp.route('/auto_refresh')
 def auto_refresh():
@@ -71,4 +75,15 @@ def auto_refresh():
     return redirect(url_for('main'))
 
 if __name__ == '__main__':
-    auto_refresh()
+
+    scheduler = BackgroundScheduler()
+    scheduler.start()
+    scheduler.add_job(
+        func=auto_refresh(),
+        trigger=IntervalTrigger(seconds=60),
+        id='worker_list',
+        name='Refresh the worker pool every 60 seconds',
+        replace_existing=True)
+    # Shut down the scheduler when exiting the app
+    atexit.register(lambda: scheduler.shutdown())
+
