@@ -1,4 +1,4 @@
-ami_id = 'ami-6cd26716'
+ami_id = 'ami-da8b3da0'
 instance_type = 't2.small'
 key_name = 'A1_Web_Development'
 security_group = ['sg-afbb7edd']
