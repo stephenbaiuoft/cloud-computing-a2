@@ -82,10 +82,13 @@ scheduler = BackgroundScheduler()
 scheduler.start()
 scheduler.add_job(
     func=auto_refresh,
-    trigger=IntervalTrigger(seconds=60),
+    trigger=IntervalTrigger(seconds=70),
     id='worker_list',
-    name='Refresh the worker pool every 60 seconds',
-    replace_existing=True)
+    name='Refresh the worker pool every 70 seconds',
+    misfire_grace_time=10,
+    coalesce=True,
+    max_instances=1,
+    replace_existing=False)
 # Shut down the scheduler when exiting the app
 atexit.register(lambda: scheduler.shutdown())
 

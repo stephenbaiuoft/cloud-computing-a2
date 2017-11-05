@@ -35,13 +35,13 @@
         <fieldset style="width:50%;">
             <legend>Tune the threshold and ratio:</legend>
             CPU utilization (average percent) threshold for growing the pool:<br>
-            <input type="number" max="100" min="0" name="thre_h">(0~100)%<br>
+            <input type="number" max="100" min="0" name="thre_h" value="{{cur[0]}}">(0~100)%<br>
             CPU utilization (average percent) threshold for shrinking the pool:<br>
-            <input type="number" max="100" min="0" name="thre_l">(0~100)%<br>
+            <input type="number" max="100" min="0" name="thre_l" value="{{cur[1]}}">(0~100)%<br>
             Ratio by which to expand the worker pool:<br>
-            <input type="number" min="1" name="ratio_grow" step="0.01"><br>
+            <input type="number" min="1" name="ratio_grow" step="0.01" value="{{cur[2]}}"><br>
             Ratio by which to shrink the worker pool:<br>
-            <input type="number" min="1" name="ratio_shrink" step="0.01"><br>
+            <input type="number" min="1" name="ratio_shrink" step="0.01" value="{{cur[3]}}"><br>
             <input type="submit" value="Set">
         </fieldset>
     </form>

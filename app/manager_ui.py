@@ -31,8 +31,8 @@ def main():
     cpu = []
     for instance in workers:
         cpu.append(cpu_load(instance.id)[0])
-
-    return render_template("manager_ui.html", title="Manager UI", instances_cpu = zip(workers, cpu), msg=MAIN_MSG)
+    current_tune = [CPU_THRE_H*100, CPU_THRE_L*100, RATIO_GROW, RATIO_SHRINK]
+    return render_template("manager_ui.html", title="Manager UI", instances_cpu = zip(workers, cpu), msg=MAIN_MSG, cur=current_tune)
 
 
 def connect_to_database():
