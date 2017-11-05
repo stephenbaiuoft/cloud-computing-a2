@@ -230,6 +230,7 @@ def auto_refresh():
         count += 1
     average_current = cpu_sum / count
     if average_current > cpu_threshold_high:
+        global MAIN_MSG
         num_to_grow = math.floor(ratio_grow * count - count)
         if num_to_grow > 0:
             new_instances = ec2.create_instances(ImageId=config.ami_id,
@@ -253,7 +254,9 @@ def auto_refresh():
                 LoadBalancerName=config.elbname,
                 Instances=new_ids
             )
+            MAIN_MSG = 'Automatically expanded the worker pool by ratio '+str(ratio_grow)
     elif average_current < cpu_threshold_low:
+        global MAIN_MSG
         num_to_shrink = math.floor(count - count * 1. / ratio_shrink)
         if num_to_shrink > 0 and count > 1:
             elb = boto3.client('elb')
@@ -269,3 +272,5 @@ def auto_refresh():
                 LoadBalancerName=config.elbname,
                 Instances=delete_ids
             )
+            MAIN_MSG = 'Automatically shrank the worker pool by ratio ' + str(ratio_shrink)
+    return redirect(url_for('main'))
