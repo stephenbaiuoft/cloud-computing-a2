@@ -30,7 +30,7 @@ def auto_refresh():
         cpu_sum += cpu_load(instance.id)[0]
         count += 1
     average_current = cpu_sum / count
-    if average_current > cpu_threshold_high:
+    if average_current >= cpu_threshold_high:
         num_to_grow = math.floor(ratio_grow * count - count)
         if num_to_grow > 0:
             new_instances = ec2.create_instances(ImageId=config.ami_id,
@@ -55,7 +55,7 @@ def auto_refresh():
                 Instances=new_ids
             )
             # MAIN_MSG = 'Automatically expanded the worker pool by ratio '+str(ratio_grow)
-    elif average_current < cpu_threshold_low:
+    elif average_current <= cpu_threshold_low:
         num_to_shrink = math.floor(count - count * 1. / ratio_shrink)
         if num_to_shrink > 0 and count > 1:
             elb = boto3.client('elb')
@@ -82,7 +82,7 @@ scheduler = BackgroundScheduler()
 scheduler.start()
 scheduler.add_job(
     func=auto_refresh,
-    trigger=IntervalTrigger(seconds=180),
+    trigger=IntervalTrigger(seconds=60),
     id='worker_list',
     name='Refresh the worker pool every 60 seconds',
     replace_existing=True)

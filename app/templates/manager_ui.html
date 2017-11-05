@@ -30,10 +30,27 @@
             </tr>
         {% endfor %}
     </table>
-    <p id="delete_msg" style="color:blue;">{{msg if msg != None}}</p>
+    <br>
+    <form action="{{url_for('tune')}}" method="post">
+        <fieldset>
+            <legend>Tune the threshold and ratio:</legend>
+            CPU utilization (average percent) threshold for growing the pool:<br>
+            <input type="number" max="100" min="0" name="thre_h">(0~100)%<br>
+            CPU utilization (average percent) threshold for shrinking the pool:<br>
+            <input type="number" max="100" min="0" name="thre_l">(0~100)%<br>
+            Ratio by which to expand the worker pool:<br>
+            <input type="number" min="1" name="ratio_grow" step="0.01"><br>
+            Ratio by which to shrink the worker pool:<br>
+            <input type="number" min="1" name="ratio_shrink" step="0.01"><br>
+            <input type="submit" value="Set">
+        </fieldset>
+    </form>
     <form action="{{url_for('delete_all')}}" method="post"
           onsubmit="return confirm('Delete user data and images?');">
+        Delete everything including users and photos' info in database and files on S3:
         <input type="submit" value="Delete all data">
     </form>
+    <p id="delete_msg" style="color:blue;">{{msg if msg != None}}</p>
+
 </body>
 </html>
