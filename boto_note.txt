@@ -1,0 +1,5 @@
+boto3, filtering:
+
+http://boto3.readthedocs.io/en/latest/reference/services/ec2.html
+// a list of one of more filters based on the doc description
+filter = []

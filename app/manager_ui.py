@@ -25,9 +25,17 @@ def main():
     # create connection to ec2 worker pool
     ec2 = boto3.resource('ec2')
     # list a list of instances named 'worker'
-    workers = ec2.instances.filter(Filters=[{'Name':'tag:Name', 'Values':['worker']},
-                                            {'Name': 'instance-state-name', 'Values': ['running','pending','shutting-down','stopping','stopped']}])
-    #
+
+    # workers = ec2.instances.filter(Filters=[{'Name':'tag:Name', 'Values':['worker']},
+    #                                         {'Name': 'instance-state-name',
+    #                                          'Values': ['running','pending','shutting-down','stopping','stopped']}
+    #                                         ])
+
+    filter_worker_tag = [{'Name': 'tag:worker', 'Values': ['vpc_worker_tag']},
+                    ]
+    workers = ec2.instances.filter(Filters=filter_worker_tag)
+    #workers = ec2.instances.all()
+
     cpu = []
     for instance in workers:
         cpu.append(cpu_load(instance.id)[0])
@@ -175,7 +183,7 @@ def cpu_load(id):
     results = client.get_metric_statistics(
         Namespace='AWS/EC2',
         MetricName='CPUUtilization',
-        Dimensions=[{'Name':'InstanceId', 'Value':id}],
+        Dimensions=[{'Name': 'InstanceId', 'Value': id}],
         StartTime=past,
         EndTime=future,
         Period=1 * 60,
@@ -243,3 +251,7 @@ def tune():
                +str(RATIO_GROW)+', RATIO_SHRINK: '+str(RATIO_SHRINK)
 
     return redirect(url_for('main'))
+
+
+def get_parameters():
+    return [CPU_THRE_H, CPU_THRE_L, RATIO_GROW, RATIO_SHRINK]
