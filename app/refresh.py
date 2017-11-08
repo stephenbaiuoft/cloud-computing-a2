@@ -78,6 +78,7 @@ def auto_refresh():
 
 # if __name__ == '__main__':
 
+
 scheduler = BackgroundScheduler()
 scheduler.start()
 scheduler.add_job(
